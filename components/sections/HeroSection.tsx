@@ -246,10 +246,12 @@ export default function HeroSection() {
 
   return (
     <section className="relative h-screen overflow-hidden bg-[#0a1628]">
-      {/* TODO: replace with R2 photo URL */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[#0a1628]"
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="https://pub-043427812e354c88bd7de61078b56cf3.r2.dev/hero.jpg"
+        alt="Aerial view of Rome at night — Italy Aerials"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+        style={{ zIndex: 0 }}
       />
 
       <div
