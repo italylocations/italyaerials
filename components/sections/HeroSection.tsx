@@ -303,7 +303,7 @@ export default function HeroSection() {
       />
 
       <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col justify-between px-6 pt-32 pb-10 lg:px-10">
-        <div className="flex flex-col items-center text-center sm:items-start sm:text-left lg:max-w-[50%]">
+        <div className="flex w-full flex-col items-center text-center lg:max-w-[50%] lg:items-start lg:text-left">
           <span className="inline-flex items-center gap-2 rounded-full border border-[#4a9eff] px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-[#4a9eff]">
             <span className="relative flex h-1.5 w-1.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4a9eff] opacity-75" />
@@ -313,7 +313,7 @@ export default function HeroSection() {
           </span>
 
           <h1
-            className="mt-8 font-[family-name:var(--font-cormorant)] text-[42px] font-light leading-[1.05] lg:text-[72px]"
+            className="mt-8 font-[family-name:var(--font-cormorant)] text-[38px] font-light leading-[1.05] lg:text-[72px]"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
             <span
@@ -330,23 +330,17 @@ export default function HeroSection() {
             </span>
           </h1>
 
-          <p className="mt-6 max-w-[420px] text-[16px] leading-[1.8] text-white/50">
+          <p className="mt-6 max-w-full text-[14px] leading-[1.8] text-white/50 lg:max-w-[420px] lg:text-[16px]">
             Professional drone photography and video for premium commercial
             productions, advertising campaigns and institutional clients.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4 sm:justify-start">
+          <div className="mt-10 flex w-full flex-col lg:w-auto">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-full bg-[#4a9eff] px-7 py-3 text-sm font-medium text-white transition-all hover:bg-[#7ab8ff]"
+              className="inline-flex w-full items-center justify-center rounded-full bg-[#4a9eff] px-7 py-3 text-sm font-medium text-white transition-all hover:bg-[#7ab8ff] lg:w-auto"
             >
               Start a Project
-            </Link>
-            <Link
-              href="/portfolio"
-              className="inline-flex items-center justify-center rounded-full border border-[rgba(74,158,255,0.45)] px-7 py-3 text-sm font-medium text-[#4a9eff] transition-all hover:border-[#4a9eff] hover:bg-[rgba(74,158,255,0.08)]"
-            >
-              View Showreel
             </Link>
           </div>
         </div>

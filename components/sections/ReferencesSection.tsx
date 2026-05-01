@@ -21,7 +21,7 @@ export default function ReferencesSection() {
     <section className="border-y border-white/5 bg-[#0a1828] py-32">
       <div className="mx-auto w-full max-w-7xl px-6 lg:px-10">
         <p className="text-xs font-medium uppercase tracking-[0.4em] text-[var(--color-accent)]">
-          Selected work
+          Trusted by
         </p>
         <h2 className="mt-4 max-w-2xl font-serif text-4xl leading-tight text-[var(--color-text-primary)] sm:text-5xl">
           Trusted by institutions and premium brands

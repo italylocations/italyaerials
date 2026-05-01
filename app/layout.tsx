@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import CookieBanner from "@/components/CookieBanner";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -18,6 +19,9 @@ const dmSans = DM_Sans({
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_APP_URL ?? "https://italyaerials.com";
+
+const R2_BASE = "https://pub-043427812e354c88bd7de61078b56cf3.r2.dev";
+const OG_IMAGE = `${R2_BASE}/og-image.jpg`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -40,6 +44,10 @@ export const metadata: Metadata = {
   creator: "Italy Aerials",
   publisher: "Italy Aerials",
   alternates: { canonical: "/" },
+  icons: {
+    icon: [{ url: "/logo-icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/logo-icon.svg" }],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -50,7 +58,7 @@ export const metadata: Metadata = {
       "Drone photography and video for premium commercial productions, advertising campaigns and institutional clients in Italy.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
         alt: "Italy Aerials — Aerial Cinematography Across Italy",
@@ -62,7 +70,7 @@ export const metadata: Metadata = {
     title: "Italy Aerials — Aerial Cinematography Across Italy",
     description:
       "Aerial drone photography and video for premium productions across Italy. ENAC certified.",
-    images: ["/og-image.jpg"],
+    images: [OG_IMAGE],
   },
   robots: {
     index: true,
@@ -85,7 +93,7 @@ const jsonLd = {
     "Aerial drone photography and cinematography across Italy for premium commercial productions, advertising agencies and institutional clients.",
   url: SITE_URL,
   email: "fly@italyaerials.com",
-  image: `${SITE_URL}/og-image.jpg`,
+  image: OG_IMAGE,
   areaServed: { "@type": "Country", name: "Italy" },
   address: {
     "@type": "PostalAddress",
@@ -119,6 +127,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <CookieBanner />
       </body>
     </html>
   );
