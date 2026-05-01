@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { Mail, MapPin, Shield } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact — Send a Brief to Italy Aerials",
+  title: "Start a Project | Italy Aerials",
   description:
-    "Send a project brief — locations, dates, deliverables. We reply within 24 hours with a feasibility check and a quote.",
+    "Tell us about your project. We respond within 24 hours with a permit feasibility check and a quote.",
   alternates: { canonical: "/contact" },
 };
 
@@ -13,93 +15,75 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
-        <section className="bg-[#0d1f35] pt-40 pb-32">
-          <div className="mx-auto grid w-full max-w-6xl gap-16 px-6 lg:grid-cols-2 lg:px-10">
-            <div>
-              <p className="text-xs font-medium uppercase tracking-[0.4em] text-[var(--color-accent)]">
-                Contact
+      <main className="flex-1 bg-[#0d1f35]">
+        <section className="pb-32 pt-40">
+          <div className="mx-auto grid w-full max-w-6xl gap-16 px-6 lg:grid-cols-[40fr_60fr] lg:gap-20 lg:px-10">
+            <div className="flex flex-col">
+              <p className="text-xs font-medium uppercase tracking-widest text-[#4a9eff]">
+                Get in Touch
               </p>
-              <h1 className="mt-6 font-serif text-5xl leading-[1.05] text-[var(--color-text-primary)] sm:text-6xl">
-                Send us your brief
+              <h1
+                className="mt-6 font-[family-name:var(--font-cormorant)] text-[48px] leading-[1.05] text-[#e8f4ff]"
+                style={{ fontFamily: "var(--font-cormorant)" }}
+              >
+                Let&apos;s plan your shoot
               </h1>
-              <p className="mt-8 text-lg leading-relaxed text-[var(--color-text-muted)]">
-                Locations, dates, deliverables, target audience. The more
-                detail you share, the faster we can confirm feasibility,
-                permits and a quote — usually within 24 hours.
+              <p className="mt-6 text-base leading-relaxed text-white/60">
+                Tell us about your project — location, dates, deliverables. We
+                reply within 24 hours with a permit feasibility check and a
+                quote.
               </p>
-              <div className="mt-10 space-y-3 text-sm text-[var(--color-text-muted)]">
-                <p>
-                  <span className="text-[var(--color-text-primary)]">Email </span>
+
+              <ul className="mt-10 flex flex-col gap-5">
+                <li className="flex items-start gap-4">
+                  <Mail
+                    size={20}
+                    strokeWidth={1.5}
+                    className="mt-0.5 shrink-0 text-[#4a9eff]"
+                  />
                   <a
                     href="mailto:fly@italyaerials.com"
-                    className="text-[var(--color-accent)] hover:text-[#7ab8ff]"
+                    className="text-sm text-[#e8f4ff] transition-colors hover:text-[#4a9eff]"
                   >
                     fly@italyaerials.com
                   </a>
-                </p>
-                <p>
-                  <span className="text-[var(--color-text-primary)]">Base </span>
-                  Rome — operating across Italy
-                </p>
-                <p>
-                  <span className="text-[var(--color-text-primary)]">Hours </span>
-                  Mon–Sat, 09:00–19:00 CET
-                </p>
-              </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <MapPin
+                    size={20}
+                    strokeWidth={1.5}
+                    className="mt-0.5 shrink-0 text-[#4a9eff]"
+                  />
+                  <span className="text-sm text-[#e8f4ff]">
+                    Rome — Operating across Italy
+                  </span>
+                </li>
+                <li className="flex items-start gap-4">
+                  <Shield
+                    size={20}
+                    strokeWidth={1.5}
+                    className="mt-0.5 shrink-0 text-[#4a9eff]"
+                  />
+                  <span className="text-sm text-[#e8f4ff]">
+                    ENAC Licensed · Fully Insured
+                  </span>
+                </li>
+              </ul>
+
+              <div className="mt-10 h-px w-full bg-white/10" />
+
+              <p className="mt-6 text-xs uppercase tracking-widest text-white/50">
+                Average response time: under 4 hours
+              </p>
+
+              <p className="mt-auto pt-12 text-xs text-white/30">
+                Part of italylocations.com · italycreatives.com · nreal.it
+              </p>
             </div>
-            <form
-              action="/api/contact"
-              method="post"
-              className="space-y-5 rounded-2xl border border-white/5 bg-[#0a1828] p-8"
-            >
-              <div className="grid gap-5 sm:grid-cols-2">
-                <label className="block text-sm">
-                  <span className="text-[var(--color-text-muted)]">Name</span>
-                  <input
-                    name="name"
-                    required
-                    className="mt-2 w-full rounded-md border border-white/10 bg-[#0d1f35] px-4 py-3 text-[var(--color-text-primary)] outline-none focus:border-[var(--color-accent)]"
-                  />
-                </label>
-                <label className="block text-sm">
-                  <span className="text-[var(--color-text-muted)]">Email</span>
-                  <input
-                    name="email"
-                    type="email"
-                    required
-                    className="mt-2 w-full rounded-md border border-white/10 bg-[#0d1f35] px-4 py-3 text-[var(--color-text-primary)] outline-none focus:border-[var(--color-accent)]"
-                  />
-                </label>
-              </div>
-              <label className="block text-sm">
-                <span className="text-[var(--color-text-muted)]">
-                  Company / Production
-                </span>
-                <input
-                  name="company"
-                  className="mt-2 w-full rounded-md border border-white/10 bg-[#0d1f35] px-4 py-3 text-[var(--color-text-primary)] outline-none focus:border-[var(--color-accent)]"
-                />
-              </label>
-              <label className="block text-sm">
-                <span className="text-[var(--color-text-muted)]">
-                  Project brief
-                </span>
-                <textarea
-                  name="message"
-                  rows={6}
-                  required
-                  placeholder="Locations, dates, deliverables, audience..."
-                  className="mt-2 w-full rounded-md border border-white/10 bg-[#0d1f35] px-4 py-3 text-[var(--color-text-primary)] outline-none focus:border-[var(--color-accent)]"
-                />
-              </label>
-              <button
-                type="submit"
-                className="inline-flex w-full items-center justify-center rounded-full bg-[var(--color-accent)] px-7 py-3 text-sm font-medium text-[#0d1f35] transition-all hover:bg-[#7ab8ff]"
-              >
-                Send brief
-              </button>
-            </form>
+
+            <div>
+              <ContactForm />
+            </div>
           </div>
         </section>
       </main>
