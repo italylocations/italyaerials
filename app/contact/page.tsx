@@ -73,7 +73,7 @@ export default function ContactPage() {
               <div className="mt-10 h-px w-full bg-white/10" />
 
               <p className="mt-6 text-xs uppercase tracking-widest text-white/50">
-                Average response time: under 4 hours
+                Average response time: within 24 hours
               </p>
 
               <p className="mt-auto pt-12 text-xs text-white/30">

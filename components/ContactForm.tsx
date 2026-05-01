@@ -69,7 +69,7 @@ export default function ContactForm() {
           Brief received.
         </h2>
         <p className="text-sm leading-relaxed text-white/50">
-          We&apos;ll be in touch within 4 hours with a permit check and quote.
+          We&apos;ll be in touch within 24 hours with a permit check and quote.
         </p>
       </div>
     );
