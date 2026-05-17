@@ -14,6 +14,7 @@ const ROUTES: RouteEntry[] = [
   { path: "/services", changeFrequency: "yearly", priority: 0.7 },
   { path: "/aerial-filming-rome", changeFrequency: "monthly", priority: 0.9 },
   { path: "/aerial-filming-amalfi-coast", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/drone-permits-italy", changeFrequency: "monthly", priority: 0.8 },
   { path: "/portfolio", changeFrequency: "yearly", priority: 0.7 },
   { path: "/about", changeFrequency: "yearly", priority: 0.7 },
   { path: "/faq", changeFrequency: "yearly", priority: 0.7 },
