@@ -12,6 +12,7 @@ type RouteEntry = {
 const ROUTES: RouteEntry[] = [
   { path: "", changeFrequency: "monthly", priority: 1 },
   { path: "/services", changeFrequency: "yearly", priority: 0.7 },
+  { path: "/aerial-filming-rome", changeFrequency: "monthly", priority: 0.9 },
   { path: "/portfolio", changeFrequency: "yearly", priority: 0.7 },
   { path: "/about", changeFrequency: "yearly", priority: 0.7 },
   { path: "/faq", changeFrequency: "yearly", priority: 0.7 },
