@@ -189,7 +189,7 @@ function VideoLightbox({
         className="mx-auto w-full max-w-5xl px-4"
       >
         <iframe
-          src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&color=4a9eff&title=0&byline=0&portrait=0`}
+          src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&color=4a9eff&title=0&byline=0&portrait=0&quality=720p&dnt=1`}
           allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
           className="aspect-video w-full rounded-xl border-0"
