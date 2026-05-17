@@ -1,11 +1,15 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { X } from "lucide-react";
 
 type VideoCard = {
   title: string;
   location: string;
   category: string;
   videoSrc: string;
-  vimeoUrl: string;
+  vimeoId: string;
 };
 
 const VIDEO_CARDS: VideoCard[] = [
@@ -15,7 +19,7 @@ const VIDEO_CARDS: VideoCard[] = [
     category: "Institutional",
     videoSrc:
       "https://pub-043427812e354c88bd7de61078b56cf3.r2.dev/portfolio/previews/villamedici.mp4",
-    vimeoUrl: "https://vimeo.com/1186679891",
+    vimeoId: "1186679891",
   },
   {
     title: "Fattoria Le Pupille",
@@ -23,7 +27,7 @@ const VIDEO_CARDS: VideoCard[] = [
     category: "Wine & Food",
     videoSrc:
       "https://pub-043427812e354c88bd7de61078b56cf3.r2.dev/portfolio/previews/pupille.mp4",
-    vimeoUrl: "https://vimeo.com/1180314494",
+    vimeoId: "1180314494",
   },
   {
     title: "Ponza Island",
@@ -31,7 +35,7 @@ const VIDEO_CARDS: VideoCard[] = [
     category: "Landscape",
     videoSrc:
       "https://pub-043427812e354c88bd7de61078b56cf3.r2.dev/portfolio/previews/ponza.mp4",
-    vimeoUrl: "https://vimeo.com/1186728844",
+    vimeoId: "1186728844",
   },
   {
     title: "Cortina Production",
@@ -39,17 +43,23 @@ const VIDEO_CARDS: VideoCard[] = [
     category: "Landscape",
     videoSrc:
       "https://pub-043427812e354c88bd7de61078b56cf3.r2.dev/portfolio/previews/cortina.mp4",
-    vimeoUrl: "https://vimeo.com/694392712",
+    vimeoId: "694392712",
   },
 ];
 
-function VideoPreviewCard({ card }: { card: VideoCard }) {
+function VideoPreviewCard({
+  card,
+  onPlay,
+}: {
+  card: VideoCard;
+  onPlay: () => void;
+}) {
   return (
-    <a
-      href={card.vimeoUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group relative block aspect-video overflow-hidden rounded-xl border border-white/10 bg-black"
+    <button
+      type="button"
+      onClick={onPlay}
+      aria-label={`Play ${card.title}`}
+      className="group relative block aspect-video w-full cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-black text-left"
     >
       <video
         src={card.videoSrc}
@@ -81,7 +91,7 @@ function VideoPreviewCard({ card }: { card: VideoCard }) {
           {card.location}
         </span>
       </div>
-    </a>
+    </button>
   );
 }
 
@@ -138,7 +148,61 @@ function Equalizer3Card() {
   );
 }
 
+function VideoLightbox({
+  vimeoId,
+  onClose,
+}: {
+  vimeoId: string;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = previous;
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Video player"
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
+    >
+      <button
+        type="button"
+        aria-label="Close video"
+        onClick={onClose}
+        className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full text-white/70 transition-colors hover:text-white"
+      >
+        <X size={32} strokeWidth={1.5} />
+      </button>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="mx-auto w-full max-w-5xl px-4"
+      >
+        <iframe
+          src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&color=4a9eff&title=0&byline=0&portrait=0`}
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+          className="aspect-video w-full rounded-xl border-0"
+          title="Vimeo video player"
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function PortfolioSection() {
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+
   return (
     <section className="bg-[#0d1f35] py-32">
       <div className="mx-auto w-full max-w-7xl px-6 lg:px-10">
@@ -159,16 +223,28 @@ export default function PortfolioSection() {
 
         <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-6">
           <div className="md:col-span-2">
-            <VideoPreviewCard card={VIDEO_CARDS[0]} />
+            <VideoPreviewCard
+              card={VIDEO_CARDS[0]}
+              onPlay={() => setActiveVideo(VIDEO_CARDS[0].vimeoId)}
+            />
           </div>
           <div className="md:col-span-2">
-            <VideoPreviewCard card={VIDEO_CARDS[1]} />
+            <VideoPreviewCard
+              card={VIDEO_CARDS[1]}
+              onPlay={() => setActiveVideo(VIDEO_CARDS[1].vimeoId)}
+            />
           </div>
           <div className="md:col-span-2">
-            <VideoPreviewCard card={VIDEO_CARDS[2]} />
+            <VideoPreviewCard
+              card={VIDEO_CARDS[2]}
+              onPlay={() => setActiveVideo(VIDEO_CARDS[2].vimeoId)}
+            />
           </div>
           <div className="md:col-span-2 md:col-start-2">
-            <VideoPreviewCard card={VIDEO_CARDS[3]} />
+            <VideoPreviewCard
+              card={VIDEO_CARDS[3]}
+              onPlay={() => setActiveVideo(VIDEO_CARDS[3].vimeoId)}
+            />
           </div>
           <div className="md:col-span-2">
             <Equalizer3Card />
@@ -184,6 +260,13 @@ export default function PortfolioSection() {
           </Link>
         </div>
       </div>
+
+      {activeVideo && (
+        <VideoLightbox
+          vimeoId={activeVideo}
+          onClose={() => setActiveVideo(null)}
+        />
+      )}
     </section>
   );
 }
