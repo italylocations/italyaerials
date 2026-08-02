@@ -7,11 +7,27 @@ import { useEffect, useState } from "react";
 const STORAGE_KEY = "cookie-consent";
 const GA_ID = process.env.NEXT_PUBLIC_GA4_ID;
 
+export const OPEN_PREFERENCES_EVENT = "open-cookie-preferences";
+
 type Consent = "accepted" | "declined" | null;
+
+/** Footer link that re-opens the consent banner so the choice can be changed. */
+export function CookiePreferencesButton() {
+  return (
+    <button
+      type="button"
+      onClick={() => window.dispatchEvent(new Event(OPEN_PREFERENCES_EVENT))}
+      className="cursor-pointer hover:text-[#4a9eff]"
+    >
+      Cookie Preferences
+    </button>
+  );
+}
 
 export default function CookieBanner() {
   const [consent, setConsent] = useState<Consent>(null);
   const [hydrated, setHydrated] = useState(false);
+  const [reopened, setReopened] = useState(false);
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
@@ -19,19 +35,29 @@ export default function CookieBanner() {
       setConsent(stored);
     }
     setHydrated(true);
+
+    const openPreferences = () => setReopened(true);
+    window.addEventListener(OPEN_PREFERENCES_EVENT, openPreferences);
+    return () =>
+      window.removeEventListener(OPEN_PREFERENCES_EVENT, openPreferences);
   }, []);
 
-  const accept = () => {
-    window.localStorage.setItem(STORAGE_KEY, "accepted");
-    setConsent("accepted");
+  const save = (choice: Exclude<Consent, null>) => {
+    const previous = window.localStorage.getItem(STORAGE_KEY);
+    window.localStorage.setItem(STORAGE_KEY, choice);
+    setConsent(choice);
+    setReopened(false);
+
+    // GA4 is already running in this session — reload so it starts clean.
+    if (previous === "accepted" && choice === "declined") {
+      window.location.reload();
+    }
   };
 
-  const decline = () => {
-    window.localStorage.setItem(STORAGE_KEY, "declined");
-    setConsent("declined");
-  };
+  const accept = () => save("accepted");
+  const decline = () => save("declined");
 
-  const showBanner = hydrated && consent === null;
+  const showBanner = hydrated && (consent === null || reopened);
   const loadGa = hydrated && consent === "accepted" && Boolean(GA_ID);
 
   return (

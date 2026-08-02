@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LogoIcon from "@/components/LogoIcon";
+import { CookiePreferencesButton } from "@/components/CookieBanner";
 
 export default function Footer() {
   return (
@@ -81,6 +82,8 @@ export default function Footer() {
           >
             Cookie Policy
           </Link>
+          <span aria-hidden>·</span>
+          <CookiePreferencesButton />
         </div>
         <p className="text-xs text-white/30">
           Part of the italylocations.com ecosystem.
