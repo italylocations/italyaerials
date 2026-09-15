@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title:
@@ -19,16 +20,16 @@ const jsonLd = {
   author: {
     "@type": "Organization",
     name: "Italy Aerials",
-    url: "https://italyaerials.com",
+    url: SITE_URL,
   },
   publisher: {
     "@type": "Organization",
     name: "Italy Aerials",
-    url: "https://italyaerials.com",
+    url: SITE_URL,
   },
   description:
     "Complete guide to drone permits and regulations in Italy for commercial and film productions. Written by ENAC licensed operators with experience in Rome, Amalfi Coast and restricted zones.",
-  url: "https://italyaerials.com/drone-permits-italy",
+  url: `${SITE_URL}/drone-permits-italy`,
 };
 
 const cormorant = { fontFamily: "var(--font-cormorant)" };

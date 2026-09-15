@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import CookieBanner from "@/components/CookieBanner";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -16,9 +17,6 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_APP_URL ?? "https://italyaerials.com";
 
 const R2_BASE = "https://pub-043427812e354c88bd7de61078b56cf3.r2.dev";
 const OG_IMAGE = `${R2_BASE}/og-image.jpg`;

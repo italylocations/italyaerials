@@ -1,7 +1,5 @@
 import type { MetadataRoute } from "next";
-
-const BASE_URL =
-  process.env.NEXT_PUBLIC_APP_URL ?? "https://italyaerials.com";
+import { SITE_URL } from "@/lib/site";
 
 type RouteEntry = {
   path: string;
@@ -26,7 +24,7 @@ const ROUTES: RouteEntry[] = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
   return ROUTES.map(({ path, changeFrequency, priority }) => ({
-    url: `${BASE_URL}${path}`,
+    url: `${SITE_URL}${path}`,
     lastModified,
     changeFrequency,
     priority,

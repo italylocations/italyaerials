@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { SITE_URL } from "@/lib/site";
 import RomeVideoGallery from "./RomeVideoGallery";
 
 export const metadata: Metadata = {
@@ -18,14 +19,14 @@ const jsonLd = {
   provider: {
     "@type": "LocalBusiness",
     name: "Italy Aerials",
-    url: "https://italyaerials.com",
+    url: SITE_URL,
     email: "fly@italyaerials.com",
     areaServed: "Rome, Italy",
   },
   description:
     "Professional aerial drone filming and photography in Rome Italy for commercial productions, fashion campaigns and institutional clients. ENAC licensed pilots authorized for restricted airspace.",
   areaServed: "Rome, Italy",
-  url: "https://italyaerials.com/aerial-filming-rome",
+  url: `${SITE_URL}/aerial-filming-rome`,
 };
 
 const cormorant = { fontFamily: "var(--font-cormorant)" };

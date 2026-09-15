@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { SITE_URL } from "@/lib/site";
 import AmalfiVideoGallery from "./AmalfiVideoGallery";
 
 export const metadata: Metadata = {
@@ -19,13 +20,13 @@ const jsonLd = {
   provider: {
     "@type": "LocalBusiness",
     name: "Italy Aerials",
-    url: "https://italyaerials.com",
+    url: SITE_URL,
     email: "fly@italyaerials.com",
     areaServed: "Amalfi Coast, Italy",
   },
   description:
     "Professional aerial drone filming and photography on the Amalfi Coast Italy. Featured in Sony Pictures Equalizer 3. ENAC licensed pilots.",
-  url: "https://italyaerials.com/aerial-filming-amalfi-coast",
+  url: `${SITE_URL}/aerial-filming-amalfi-coast`,
 };
 
 const cormorant = { fontFamily: "var(--font-cormorant)" };
